@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lostnfound_webadmin/services/auth.service.dart';
-import 'package:lostnfound_webadmin/views/admin_dashboard.dart';
 
 final authStateChangeProvider = StreamProvider<User?>((ref) {
   return FirebaseAuth.instance.authStateChanges();

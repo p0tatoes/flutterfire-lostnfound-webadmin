@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   static Future<UserCredential?> googleSignin() async {
@@ -8,6 +7,8 @@ class AuthService {
       final GoogleAuthProvider authProvider = GoogleAuthProvider();
 
       UserCredential user = await auth.signInWithPopup(authProvider);
+
+      //! Testing with shared_preferences
       // final String? authToken = await user.user?.getIdToken();
 
       // // if authToken is null, will not set authToken to shared preferences and will return a null value for this function
@@ -16,6 +17,7 @@ class AuthService {
       // // sets authToken to the shared preferences and returns user creds
       // final prefs = await SharedPreferences.getInstance();
       // prefs.setString("authToken", authToken);
+
       return user;
     } catch (e) {
       // error handling; return null if failed to sign in
