@@ -1,5 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:lostnfound_webadmin/services/auth.service.dart';
+import 'package:lostnfound_webadmin/providers/auth.provider.dart';
 import 'package:lostnfound_webadmin/views/admin_dashboard.dart';
 import 'package:lostnfound_webadmin/views/login.dart';
 import 'package:provider/provider.dart';
@@ -12,7 +12,7 @@ Future<void> main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   runApp(ChangeNotifierProvider(
-    create: (context) => AuthService(),
+    create: (context) => AuthProvider(),
     child: const MyApp(),
   ));
 }
@@ -25,7 +25,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: true),
-      initialRoute: AuthService.user == null ? "/login" : "/dashboard",
+      title: "Campus Lost-n-found",
+      initialRoute: AuthProvider.user == null ? "/login" : "/dashboard",
       routes: {
         "/login": (context) => const LoginView(),
         "/dashboard": (context) => const AdminDashboardView(),

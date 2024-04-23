@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:lostnfound_webadmin/services/auth.service.dart';
+import 'package:lostnfound_webadmin/providers/auth.provider.dart';
 
-AuthService auth = AuthService();
+AuthProvider auth = AuthProvider();
+
+Future<void> getItems() async {}
 
 class AdminDashboardView extends StatefulWidget {
   const AdminDashboardView({super.key});
@@ -13,42 +15,51 @@ class AdminDashboardView extends StatefulWidget {
 class _AdminDashboardViewState extends State<AdminDashboardView> {
   @override
   Widget build(BuildContext context) {
-    print("is logged in (dashboard)? ${AuthService.user != null}");
+    //? Debugging
+    // print("is logged in (dashboard)? ${AuthProvider.user != null}");
 
-    return Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(AuthService.user?.displayName ?? "No name"),
-          const SizedBox(
-            height: 50.0,
-          ),
-          ElevatedButton(
-            onPressed: () async {
-              // TODO: Fix not getting a prompt to select an account after logging out.
-              try {
-                await auth.googleSignOut();
+    return Scaffold(
+      body: Wrap(
+        spacing: 30.0,
+        children: [],
+      ),
+    );
 
-                if (AuthService.user == null) {
-                  //? Debugging
-                  // print("is logged out? ${AuthService.user == null}");
+//! Old; just display name and sign out button
+    // return Column(
+    //     crossAxisAlignment: CrossAxisAlignment.center,
+    //     mainAxisAlignment: MainAxisAlignment.center,
+    //     children: [
+    //       Text(AuthService.user?.displayName ?? "No name"),
+    //       const SizedBox(
+    //         height: 50.0,
+    //       ),
+    //       ElevatedButton(
+    //         onPressed: () async {
+    //           // TODO: Fix not getting a prompt to select an account after logging out.
+    //           try {
+    //             await auth.googleSignOut();
 
-                  Navigator.popAndPushNamed(context, "/login");
-                }
-              } catch (e) {
-                // uhhh
-              }
-            },
-            style: ElevatedButton.styleFrom(
-                shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.zero),
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 30.0, vertical: 20.0),
-                backgroundColor: Colors.blue
-                    .shade900, // This is the background color of the button
-                foregroundColor: Colors.blue.shade100),
-            child: const Text("Sign out"),
-          )
-        ]);
+    //             if (AuthService.user == null) {
+    //               //? Debugging
+    //               // print("is logged out? ${AuthService.user == null}");
+
+    //               Navigator.popAndPushNamed(context, "/login");
+    //             }
+    //           } catch (e) {
+    //             // uhhh
+    //           }
+    //         },
+    //         style: ElevatedButton.styleFrom(
+    //             shape: const RoundedRectangleBorder(
+    //                 borderRadius: BorderRadius.zero),
+    //             padding: const EdgeInsets.symmetric(
+    //                 horizontal: 30.0, vertical: 20.0),
+    //             backgroundColor: Colors.blue
+    //                 .shade900, // This is the background color of the button
+    //             foregroundColor: Colors.blue.shade100),
+    //         child: const Text("Sign out"),
+    //       )
+    //     ]);
   }
 }

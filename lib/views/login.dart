@@ -1,12 +1,12 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:lostnfound_webadmin/services/auth.service.dart';
+import 'package:lostnfound_webadmin/providers/auth.provider.dart';
 
 /* final authStateChangeProvider = StreamProvider<User?>((ref) {
   return FirebaseAuth.instance.authStateChanges();
 }); */
 
-AuthService auth = AuthService();
+AuthProvider auth = AuthProvider();
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -66,7 +66,7 @@ class _LoginViewState extends State<LoginView> {
                         try {
                           await auth.googleSignIn();
 
-                          if (AuthService.user != null) {
+                          if (AuthProvider.user != null) {
                             //? Debugging
                             // print("is logged in? ${AuthService.user != null}");
                             // print("user: ${AuthService.user?.displayName}");

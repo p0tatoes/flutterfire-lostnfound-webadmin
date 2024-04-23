@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 // import 'package:google_sign_in/google_sign_in.dart';
 
-class AuthService extends ChangeNotifier {
+class AuthProvider extends ChangeNotifier {
   // TODO: Fix not getting a prompt to select an account after logging out.
   static User? user = FirebaseAuth.instance.currentUser;
   final GoogleAuthProvider _authProvider = GoogleAuthProvider();
@@ -14,7 +14,9 @@ class AuthService extends ChangeNotifier {
           await FirebaseAuth.instance.signInWithPopup(_authProvider);
       user = response.user;
 
-      print("logged in");
+      //? Debugging
+      // print("logged in");
+
       notifyListeners();
     } catch (e) {
       // log error
@@ -26,7 +28,9 @@ class AuthService extends ChangeNotifier {
     try {
       await FirebaseAuth.instance.signOut();
       // await _googleAuthProvider.signOut();
-      print("logged out");
+
+      //? Debugging
+      // print("logged out");
 
       user = null;
       notifyListeners();
