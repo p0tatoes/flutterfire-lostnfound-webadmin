@@ -50,13 +50,12 @@ dependencies:
   # Firebase Auth
   firebase_auth: ^4.17.8
   firebase_auth_web: ^5.9.8
+  google_sign_in: ^6.2.1
 
   # Firebase Cloud Storage
   firebase_storage: ^11.6.9
-  firebase_storage_web: ^3.7.3
+  firebase_storage_web: ^3.7.3  
 
-  # State Management
-  flutter_riverpod: ^2.5.1
   shared_preferences: ^2.2.3
 
 dev_dependencies:
