@@ -50,6 +50,7 @@ dependencies:
   # Firebase Auth
   firebase_auth: ^4.17.8
   firebase_auth_web: ^5.9.8
+  google_sign_in: ^6.2.1
 
   # Firebase Cloud Storage
   firebase_storage: ^11.6.9

@@ -1,23 +1,38 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+// import 'package:google_sign_in/google_sign_in.dart';
 
-class AuthService {
-  // TODO: Implement authentication functions
+class AuthService extends ChangeNotifier {
+  // TODO: Fix not getting a prompt to select an account after logging out.
+  static User? user = FirebaseAuth.instance.currentUser;
+  final GoogleAuthProvider _authProvider = GoogleAuthProvider();
+  // final GoogleSignIn _googleAuthProvider = GoogleSignIn();
 
-  // static final auth = FirebaseAuth.instance;
-  // static UserCredential? user;
-  // static final GoogleAuthProvider authProvider = GoogleAuthProvider();
-  // static Future<UserCredential?> googleSignin() async {
-  //   try {
-  //     user = await auth.signInWithPopup(authProvider);
+  Future<void> googleSignIn() async {
+    try {
+      final response =
+          await FirebaseAuth.instance.signInWithPopup(_authProvider);
+      user = response.user;
 
-  //     return user;
-  //   } catch (e) {
-  //     // error handling; return null if failed to sign in
-  //     return null;
-  //   }
-  // }
+      print("logged in");
+      notifyListeners();
+    } catch (e) {
+      // log error
+      print("Error: $e");
+    }
+  }
 
-  // static Future<void> googleSignout() async {
-  //   auth.signOut();
-  // }
+  Future<void> googleSignOut() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      // await _googleAuthProvider.signOut();
+      print("logged out");
+
+      user = null;
+      notifyListeners();
+    } catch (e) {
+      // log error
+      print("Error: $e");
+    }
+  }
 }
