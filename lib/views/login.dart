@@ -1,36 +1,22 @@
 import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lostnfound_webadmin/services/auth.service.dart';
-import 'authState.dart';
+
 /* final authStateChangeProvider = StreamProvider<User?>((ref) {
   return FirebaseAuth.instance.authStateChanges();
 }); */
 
-class LoginView extends ConsumerStatefulWidget {
+class LoginView extends StatefulWidget {
   const LoginView({super.key});
 
   @override
-  ConsumerState<LoginView> createState() => _LoginViewState();
+  State<LoginView> createState() => _LoginViewState();
 }
 
-class _LoginViewState extends ConsumerState<LoginView> {
+class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
-    final AsyncValue<User?> authStateChanges =
-        ref.watch(authStateChangeProvider);
-    authStateChanges.whenData(
-      (user) async {
-        if (user != null) {
-          await Navigator.pushNamed(
-            context,
-            "/dashboard",
-          );
-        }
-      },
-    );
-
     return const Login();
   }
 }
@@ -87,7 +73,8 @@ class Login extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () async {
-                        await AuthService.googleSignin();
+                        // TODO: Fix login functionality
+                        // await AuthService.googleSignin();
                       },
                       style: ElevatedButton.styleFrom(
                           shape: const RoundedRectangleBorder(

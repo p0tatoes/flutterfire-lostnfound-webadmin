@@ -1,21 +1,23 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
-  static final auth = FirebaseAuth.instance;
-  static UserCredential? user;
-  static final GoogleAuthProvider authProvider = GoogleAuthProvider();
-  static Future<UserCredential?> googleSignin() async {
-    try {
-      user = await auth.signInWithPopup(authProvider);
+  // TODO: Implement authentication functions
 
-      return user;
-    } catch (e) {
-      // error handling; return null if failed to sign in
-      return null;
-    }
-  }
+  // static final auth = FirebaseAuth.instance;
+  // static UserCredential? user;
+  // static final GoogleAuthProvider authProvider = GoogleAuthProvider();
+  // static Future<UserCredential?> googleSignin() async {
+  //   try {
+  //     user = await auth.signInWithPopup(authProvider);
 
-  static Future<void> googleSignout() async {
-    auth.signOut();
-  }
+  //     return user;
+  //   } catch (e) {
+  //     // error handling; return null if failed to sign in
+  //     return null;
+  //   }
+  // }
+
+  // static Future<void> googleSignout() async {
+  //   auth.signOut();
+  // }
 }
