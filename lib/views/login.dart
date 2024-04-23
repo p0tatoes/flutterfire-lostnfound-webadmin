@@ -3,10 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lostnfound_webadmin/services/auth.service.dart';
-
-final authStateChangeProvider = StreamProvider<User?>((ref) {
+import 'authState.dart';
+/* final authStateChangeProvider = StreamProvider<User?>((ref) {
   return FirebaseAuth.instance.authStateChanges();
-});
+}); */
 
 class LoginView extends ConsumerStatefulWidget {
   const LoginView({super.key});
@@ -20,11 +20,13 @@ class _LoginViewState extends ConsumerState<LoginView> {
   Widget build(BuildContext context) {
     final AsyncValue<User?> authStateChanges =
         ref.watch(authStateChangeProvider);
-
     authStateChanges.whenData(
       (user) async {
         if (user != null) {
-          await Navigator.pushNamed(context, "/dashboard");
+          await Navigator.pushNamed(
+            context,
+            "/dashboard",
+          );
         }
       },
     );
@@ -85,7 +87,7 @@ class Login extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () async {
-                        UserCredential? user = await AuthService.googleSignin();
+                        await AuthService.googleSignin();
                       },
                       style: ElevatedButton.styleFrom(
                           shape: const RoundedRectangleBorder(
