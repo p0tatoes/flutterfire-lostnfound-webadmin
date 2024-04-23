@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:lostnfound_webadmin/services/auth.service.dart';
 import 'package:lostnfound_webadmin/views/admin_dashboard.dart';
