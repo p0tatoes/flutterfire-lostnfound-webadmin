@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:lostnfound_webadmin/models/items.model.dart';
 import 'package:lostnfound_webadmin/providers/auth.provider.dart';
+import 'package:lostnfound_webadmin/providers/items.provider.dart';
+import 'package:provider/provider.dart';
 
 AuthProvider auth = AuthProvider();
-
-Future<void> getItems() async {}
+ItemsProvider items = ItemsProvider();
 
 class AdminDashboardView extends StatefulWidget {
   const AdminDashboardView({super.key});
@@ -14,8 +16,21 @@ class AdminDashboardView extends StatefulWidget {
 
 class _AdminDashboardViewState extends State<AdminDashboardView> {
   @override
+  void initState() {
+    // TODO: implement initState
+    items.getAllItems();
+
+    //? Debugging
+    // print("retrieved items in init state");
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     //? Debugging
+    // print(
+    //     context.select<ItemsProvider, List<ItemsModel>?>((data) => data.items));
     // print("is logged in (dashboard)? ${AuthProvider.user != null}");
 
     return Scaffold(

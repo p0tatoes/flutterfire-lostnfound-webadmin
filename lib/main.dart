@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:lostnfound_webadmin/providers/auth.provider.dart';
+import 'package:lostnfound_webadmin/providers/items.provider.dart';
 import 'package:lostnfound_webadmin/views/admin_dashboard.dart';
 import 'package:lostnfound_webadmin/views/login.dart';
 import 'package:provider/provider.dart';
@@ -11,10 +12,19 @@ Future<void> main() async {
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  runApp(ChangeNotifierProvider(
-    create: (context) => AuthProvider(),
-    child: const MyApp(),
-  ));
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => AuthProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ItemsProvider(),
+        )
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
