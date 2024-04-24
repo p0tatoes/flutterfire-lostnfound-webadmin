@@ -57,7 +57,9 @@ dependencies:
   firebase_storage_web: ^3.7.3  
 
   shared_preferences: ^2.2.3
-  cached_network_image: ^3.3.1
+
+  # carousel
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:
