@@ -40,54 +40,83 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
     if (items == null || items.isEmpty) {
       return const SizedBox.expand(
         child: Center(
-          child: Text("No text :("),
+          child: Text("No Items :("),
         ),
       );
     }
 
     return Scaffold(
-      body: GridView.builder(
-        itemCount: itemsProvider.items?.length,
-        padding: const EdgeInsets.all(30.0),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 4, crossAxisSpacing: 15.0, mainAxisSpacing: 15.0),
-        itemBuilder: (context, index) {
-          final itemsJSON = items[index].toJSON();
-          final String id = itemsJSON["id"];
-          final String name = itemsJSON["name"];
-          final String description = itemsJSON["description"];
-          final String category = itemsJSON["category"];
-          final String locationFound = itemsJSON["location_found"];
-          final Timestamp timeFound = itemsJSON["time_found"];
-          final List<dynamic>? image = itemsJSON["image"];
-          final bool claimed = itemsJSON["claimed"];
+      body: Row(
+        children: [
+          Container(
+            color: Colors.blue.shade900,
+            width: 300.0,
+            child: ListView(
+              children: [
+                DrawerHeader(
+                  child: Text("Welcome, ${AuthProvider.user?.displayName}"),
+                ),
+                ListTile(
+                  title: const Text("sign out"),
+                  onTap: () async {
+                    await auth.googleSignOut();
 
-          return GridTile(
-            child: InkWell(
-              onTap: () {
-                // redirects to item details view with arguments containing item data
-                Navigator.pushNamed(
-                  context,
-                  "/item",
-                  arguments: ItemsModel(
-                      id: id,
+                    if (AuthProvider.user == null) {
+                      Navigator.popAndPushNamed(context, "/login");
+                    }
+                  },
+                )
+              ],
+            ),
+          ),
+          Expanded(
+            child: GridView.builder(
+              itemCount: itemsProvider.items?.length,
+              padding: const EdgeInsets.all(30.0),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 4,
+                  crossAxisSpacing: 15.0,
+                  mainAxisSpacing: 15.0),
+              itemBuilder: (context, index) {
+                final itemsJSON = items[index].toJSON();
+                final String id = itemsJSON["id"];
+                final String name = itemsJSON["name"];
+                final String description = itemsJSON["description"];
+                final String category = itemsJSON["category"];
+                final String locationFound = itemsJSON["location_found"];
+                final Timestamp timeFound = itemsJSON["time_found"];
+                final List<dynamic>? image = itemsJSON["image"];
+                final bool claimed = itemsJSON["claimed"];
+
+                return GridTile(
+                  child: InkWell(
+                    onTap: () {
+                      // redirects to item details view with arguments containing item data
+                      Navigator.pushNamed(
+                        context,
+                        "/item",
+                        arguments: ItemsModel(
+                            id: id,
+                            name: name,
+                            description: description,
+                            category: category,
+                            locationFound: locationFound,
+                            timeFound: timeFound,
+                            image: image,
+                            claimed: claimed),
+                      );
+                    },
+                    child: ItemCard(
                       name: name,
-                      description: description,
                       category: category,
-                      locationFound: locationFound,
-                      timeFound: timeFound,
                       image: image,
-                      claimed: claimed),
+                    ),
+                  ),
                 );
               },
-              child: ItemCard(
-                name: name,
-                category: category,
-                image: image,
-              ),
             ),
-          );
-        },
+          ),
+        ],
       ),
     );
   }
