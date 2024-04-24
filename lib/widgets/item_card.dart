@@ -3,7 +3,7 @@ import "package:flutter/material.dart";
 class ItemCard extends StatelessWidget {
   final String name;
   final String category;
-  final String description;
+  // final String description;
   final String locationFound;
   final String timeFound;
   final List<dynamic>? image;
@@ -13,7 +13,7 @@ class ItemCard extends StatelessWidget {
     super.key,
     required this.name,
     required this.category,
-    required this.description,
+    // required this.description,
     required this.locationFound,
     required this.timeFound,
     this.image,
@@ -39,7 +39,7 @@ class ItemCard extends StatelessWidget {
           Text(category),
           Text(locationFound),
           Text(timeFound.toString()),
-          Text(description),
+          // Text(description),
           Text(claimed ? "Claimed" : "Not claimed"),
         ],
       ),

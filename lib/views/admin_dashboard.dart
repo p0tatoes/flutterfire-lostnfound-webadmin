@@ -52,7 +52,7 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
         itemBuilder: (context, index) {
           final itemsJSON = items[index].toJSON();
           final String name = itemsJSON["name"];
-          final String description = itemsJSON["description"];
+          // final String description = itemsJSON["description"];
           final String category = itemsJSON["category"];
           final String locationFound = itemsJSON["location_found"];
           final String timeFound = itemsJSON["time_found"];
@@ -63,7 +63,7 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
             child: ItemCard(
               name: name,
               category: category,
-              description: description,
+              // description: description,
               locationFound: locationFound,
               timeFound: timeFound,
               claimed: claimed,
