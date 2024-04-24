@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lostnfound_webadmin/models/items.model.dart';
 import 'package:lostnfound_webadmin/providers/auth.provider.dart';
 import 'package:lostnfound_webadmin/providers/items.provider.dart';
+import 'package:lostnfound_webadmin/widgets/item_card.dart';
 import 'package:provider/provider.dart';
 
 AuthProvider auth = AuthProvider();
@@ -29,10 +29,49 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
   @override
   Widget build(BuildContext context) {
     final itemsProvider = context.watch<ItemsProvider>();
+    final items = itemsProvider.items;
+    final isFetching = itemsProvider.isFetching;
 
     // show loading indicator if items are still fetching
-    if (itemsProvider.isFetching) return const CircularProgressIndicator();
+    if (isFetching) return const CircularProgressIndicator();
 
-    return Scaffold(body: Text("${itemsProvider.items}"));
+    if (items == null || items.isEmpty) {
+      return SizedBox.expand(
+        child: Center(
+          child: Text("No text :("),
+        ),
+      );
+    }
+
+    return Scaffold(
+      body: GridView.builder(
+        itemCount: itemsProvider.items?.length,
+        padding: const EdgeInsets.all(30.0),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 4, crossAxisSpacing: 15.0, mainAxisSpacing: 15.0),
+        itemBuilder: (context, index) {
+          final itemsJSON = items[index].toJSON();
+          final String name = itemsJSON["name"];
+          final String description = itemsJSON["description"];
+          final String category = itemsJSON["category"];
+          final String locationFound = itemsJSON["location_found"];
+          final String timeFound = itemsJSON["time_found"];
+          final List<dynamic>? image = itemsJSON["image"];
+          final bool claimed = itemsJSON["claimed"];
+
+          return GridTile(
+            child: ItemCard(
+              name: name,
+              category: category,
+              description: description,
+              locationFound: locationFound,
+              timeFound: timeFound,
+              claimed: claimed,
+              image: image,
+            ),
+          );
+        },
+      ),
+    );
   }
 }
