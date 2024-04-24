@@ -18,63 +18,21 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
   @override
   void initState() {
     // TODO: implement initState
-    items.getAllItems();
+    super.initState();
+
+    Provider.of<ItemsProvider>(context, listen: false).getAllItems();
 
     //? Debugging
     // print("retrieved items in init state");
-
-    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    //? Debugging
-    // print(
-    //     context.select<ItemsProvider, List<ItemsModel>?>((data) => data.items));
-    // print("is logged in (dashboard)? ${AuthProvider.user != null}");
+    final itemsProvider = context.watch<ItemsProvider>();
 
-    return Scaffold(
-      body: Wrap(
-        spacing: 30.0,
-        children: [],
-      ),
-    );
+    // show loading indicator if items are still fetching
+    if (itemsProvider.isFetching) return const CircularProgressIndicator();
 
-//! Old; just display name and sign out button
-    // return Column(
-    //     crossAxisAlignment: CrossAxisAlignment.center,
-    //     mainAxisAlignment: MainAxisAlignment.center,
-    //     children: [
-    //       Text(AuthService.user?.displayName ?? "No name"),
-    //       const SizedBox(
-    //         height: 50.0,
-    //       ),
-    //       ElevatedButton(
-    //         onPressed: () async {
-    //           // TODO: Fix not getting a prompt to select an account after logging out.
-    //           try {
-    //             await auth.googleSignOut();
-
-    //             if (AuthService.user == null) {
-    //               //? Debugging
-    //               // print("is logged out? ${AuthService.user == null}");
-
-    //               Navigator.popAndPushNamed(context, "/login");
-    //             }
-    //           } catch (e) {
-    //             // uhhh
-    //           }
-    //         },
-    //         style: ElevatedButton.styleFrom(
-    //             shape: const RoundedRectangleBorder(
-    //                 borderRadius: BorderRadius.zero),
-    //             padding: const EdgeInsets.symmetric(
-    //                 horizontal: 30.0, vertical: 20.0),
-    //             backgroundColor: Colors.blue
-    //                 .shade900, // This is the background color of the button
-    //             foregroundColor: Colors.blue.shade100),
-    //         child: const Text("Sign out"),
-    //       )
-    //     ]);
+    return Scaffold(body: Text("${itemsProvider.items}"));
   }
 }
