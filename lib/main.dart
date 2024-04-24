@@ -1,8 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:lostnfound_webadmin/providers/auth.provider.dart';
 import 'package:lostnfound_webadmin/providers/items.provider.dart';
-import 'package:lostnfound_webadmin/views/admin_dashboard.dart';
-import 'package:lostnfound_webadmin/views/login.dart';
+import 'package:lostnfound_webadmin/views/admin_dashboard.view.dart';
+import 'package:lostnfound_webadmin/views/login.view.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
