@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:lostnfound_webadmin/models/items.model.dart';
 import 'package:lostnfound_webadmin/providers/auth.provider.dart';
 import 'package:lostnfound_webadmin/providers/items.provider.dart';
 import 'package:lostnfound_webadmin/widgets/item_card.dart';
@@ -36,7 +38,7 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
     if (isFetching) return const CircularProgressIndicator();
 
     if (items == null || items.isEmpty) {
-      return SizedBox.expand(
+      return const SizedBox.expand(
         child: Center(
           child: Text("No text :("),
         ),
@@ -51,23 +53,41 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
             crossAxisCount: 4, crossAxisSpacing: 15.0, mainAxisSpacing: 15.0),
         itemBuilder: (context, index) {
           final itemsJSON = items[index].toJSON();
+          final String id = itemsJSON["id"];
           final String name = itemsJSON["name"];
-          // final String description = itemsJSON["description"];
+          final String description = itemsJSON["description"];
           final String category = itemsJSON["category"];
           final String locationFound = itemsJSON["location_found"];
-          final String timeFound = itemsJSON["time_found"];
+
+          final Timestamp timeFound = itemsJSON["time_found"];
+          final String strTimeFound = timeFound.toDate().toString();
+
           final List<dynamic>? image = itemsJSON["image"];
           final bool claimed = itemsJSON["claimed"];
 
           return GridTile(
-            child: ItemCard(
-              name: name,
-              category: category,
-              // description: description,
-              locationFound: locationFound,
-              timeFound: timeFound,
-              claimed: claimed,
-              image: image,
+            child: InkWell(
+              onTap: () {
+                // redirects to item details view with arguments containing item data
+                Navigator.pushNamed(
+                  context,
+                  "/item",
+                  arguments: ItemsModel(
+                      id: id,
+                      name: name,
+                      description: description,
+                      category: category,
+                      locationFound: locationFound,
+                      timeFound: timeFound,
+                      image: image,
+                      claimed: claimed),
+                );
+              },
+              child: ItemCard(
+                name: name,
+                category: category,
+                image: image,
+              ),
             ),
           );
         },

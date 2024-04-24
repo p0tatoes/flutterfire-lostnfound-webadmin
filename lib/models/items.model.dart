@@ -27,7 +27,7 @@ class ItemsModel {
         "description": description,
         "category": category,
         "location_found": locationFound,
-        "time_found": timeFound.toDate().toString(),
+        "time_found": timeFound,
         "image": image,
         "claimed": claimed,
       };
