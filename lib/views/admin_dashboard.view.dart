@@ -58,10 +58,7 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
           final String description = itemsJSON["description"];
           final String category = itemsJSON["category"];
           final String locationFound = itemsJSON["location_found"];
-
           final Timestamp timeFound = itemsJSON["time_found"];
-          final String strTimeFound = timeFound.toDate().toString();
-
           final List<dynamic>? image = itemsJSON["image"];
           final bool claimed = itemsJSON["claimed"];
 
