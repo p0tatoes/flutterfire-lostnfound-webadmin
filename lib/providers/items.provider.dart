@@ -3,11 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:lostnfound_webadmin/models/items.model.dart';
 
 class ItemsProvider extends ChangeNotifier {
-  List<ItemsModel>? items = [];
   final _db = FirebaseFirestore.instance;
 
+  List<ItemsModel>? items = [];
+  bool isFetching = false;
+
   Future<void> getAllItems() async {
-    // retrieve items from oldest to newest based on "time_found" field
+    /**
+     * retrieve items from oldest to newest based on "time_found" field 
+     * 
+     * set "loading" state to true
+     */
+    isFetching = true;
+    notifyListeners();
+
     final itemSnapshot =
         await _db.collection("items").orderBy("time_found").get();
 
@@ -73,6 +82,7 @@ class ItemsProvider extends ChangeNotifier {
       }
     }
 
+    isFetching = false;
     notifyListeners();
   }
 }
