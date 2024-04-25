@@ -13,7 +13,7 @@ class ItemView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.blue.shade900,
       ),
       body: Padding(
         padding: const EdgeInsets.only(bottom: 20.0),

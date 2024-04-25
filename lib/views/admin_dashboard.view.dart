@@ -88,17 +88,20 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
                   leading: Icon(Icons.person, color: Colors.white),
                   onTap: () async {},
                 ),
-                ListTile(
-                  title: const Text("Sign Out",
-                      style: TextStyle(color: Colors.white)),
-                  leading: Icon(Icons.logout, color: Colors.white),
-                  onTap: () async {
-                    await auth.googleSignOut();
+                Container(
+                  color: Colors.red,
+                  child: ListTile(
+                    title: const Text("Sign Out",
+                        style: TextStyle(color: Colors.white)),
+                    leading: Icon(Icons.logout, color: Colors.white),
+                    onTap: () async {
+                      await auth.googleSignOut();
 
-                    if (AuthProvider.user == null) {
-                      Navigator.popAndPushNamed(context, "/login");
-                    }
-                  },
+                      if (AuthProvider.user == null) {
+                        Navigator.popAndPushNamed(context, "/login");
+                      }
+                    },
+                  ),
                 )
               ],
             ),
