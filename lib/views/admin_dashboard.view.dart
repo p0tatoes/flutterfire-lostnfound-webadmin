@@ -23,9 +23,6 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
     super.initState();
 
     Provider.of<ItemsProvider>(context, listen: false).getAllItems();
-
-    //? Debugging
-    // print("retrieved items in init state");
   }
 
   @override
@@ -35,8 +32,12 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
     final isFetching = itemsProvider.isFetching;
 
     // show loading indicator if items are still fetching
-    if (isFetching) return const CircularProgressIndicator();
-
+    if (isFetching) {
+      return const SizedBox(
+          child: Center(
+        child: CircularProgressIndicator(),
+      ));
+    }
     if (items == null || items.isEmpty) {
       return const SizedBox.expand(
         child: Center(
@@ -54,10 +55,30 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
             child: ListView(
               children: [
                 DrawerHeader(
-                  child: Text("Welcome, ${AuthProvider.user?.displayName}"),
+                  child: Column(
+                    children: [
+                      Image.asset("assets/logo-addu-text.jpg"),
+                      Text("Welcome, ${AuthProvider.user?.displayName}",
+                          style: TextStyle(color: Colors.white)),
+                    ],
+                  ),
                 ),
                 ListTile(
-                  title: const Text("sign out"),
+                  title: const Text("Dashboard",
+                      style: TextStyle(color: Colors.white)),
+                  leading: Icon(Icons.home_sharp, color: Colors.white),
+                  onTap: () async {},
+                ),
+                ListTile(
+                  title: const Text("Profile",
+                      style: TextStyle(color: Colors.white)),
+                  leading: Icon(Icons.person, color: Colors.white),
+                  onTap: () async {},
+                ),
+                ListTile(
+                  title: const Text("Sign Out",
+                      style: TextStyle(color: Colors.white)),
+                  leading: Icon(Icons.logout, color: Colors.white),
                   onTap: () async {
                     await auth.googleSignOut();
 

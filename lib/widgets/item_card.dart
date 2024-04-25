@@ -15,6 +15,7 @@ class ItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Colors.blue.shade900,
       clipBehavior: Clip.antiAlias,
       child: Column(
         children: [
@@ -23,17 +24,31 @@ class ItemCard extends StatelessWidget {
             height: MediaQuery.sizeOf(context).height * 0.25,
             child: image == null
                 ? const Placeholder(
-                    color: Colors.red,
+                    color: Colors.white,
                   )
                 : Image.network(
                     image?[0],
                     fit: BoxFit.fill,
                   ),
           ),
-          Text(name.toUpperCase()),
-          Text(category),
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              children: [
+                Text(name.toUpperCase(),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    )),
+                Text("${category[0].toUpperCase()}${category.substring(1)}",
+                    style: TextStyle(color: Colors.white)),
+              ],
+            ),
+          )
         ],
       ),
     );
   }
+
+  void onPressed() {}
 }
