@@ -85,4 +85,9 @@ class ItemsProvider extends ChangeNotifier {
     isFetching = false;
     notifyListeners();
   }
+
+  Future<void> clearItems() async {
+    items?.clear();
+    notifyListeners();
+  }
 }

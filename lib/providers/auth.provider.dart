@@ -27,9 +27,11 @@ class AuthProvider extends ChangeNotifier {
 
   Future<void> googleSignOut() async {
     try {
-      await _googleAuthProvider.disconnect();
-      await FirebaseAuth.instance.signOut();
+      print("is curr user null? ${_googleAuthProvider.currentUser != null}");
       await _googleAuthProvider.signOut();
+      await _googleAuthProvider.disconnect();
+
+      await FirebaseAuth.instance.signOut();
 
       //? Debugging
       // print("logged out");

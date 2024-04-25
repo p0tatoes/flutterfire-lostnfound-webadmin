@@ -32,7 +32,7 @@ class ItemCard extends StatelessWidget {
                   ),
           ),
           Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(15),
             child: Column(
               children: [
                 Text(name.toUpperCase(),

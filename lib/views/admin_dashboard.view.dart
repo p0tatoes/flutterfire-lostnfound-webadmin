@@ -7,7 +7,6 @@ import 'package:lostnfound_webadmin/widgets/item_card.dart';
 import 'package:provider/provider.dart';
 
 AuthProvider auth = AuthProvider();
-ItemsProvider items = ItemsProvider();
 
 class AdminDashboardView extends StatefulWidget {
   const AdminDashboardView({super.key});
@@ -17,12 +16,26 @@ class AdminDashboardView extends StatefulWidget {
 }
 
 class _AdminDashboardViewState extends State<AdminDashboardView> {
+  late ItemsProvider _itemsProvider;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
 
-    Provider.of<ItemsProvider>(context, listen: false).getAllItems();
+    _itemsProvider = Provider.of<ItemsProvider>(context, listen: false);
+    _itemsProvider.getAllItems();
+
+    //? Debugging
+    // print("retrieved items in init state");
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _itemsProvider.clearItems();
+
+    super.dispose();
   }
 
   @override
