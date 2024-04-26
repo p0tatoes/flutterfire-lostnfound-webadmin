@@ -1,8 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:lostnfound_webadmin/providers/auth.provider.dart';
 import 'package:lostnfound_webadmin/providers/items.provider.dart';
-import 'package:lostnfound_webadmin/views/admin_dashboard.dart';
-import 'package:lostnfound_webadmin/views/login.dart';
+import 'package:lostnfound_webadmin/views/admin_dashboard.view.dart';
+import 'package:lostnfound_webadmin/views/item.view.dart';
+import 'package:lostnfound_webadmin/views/login.view.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,7 @@ import 'package:flutter/material.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.web);
 
   runApp(
     MultiProvider(
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
       routes: {
         "/login": (context) => const LoginView(),
         "/dashboard": (context) => const AdminDashboardView(),
+        "/item": (context) => const ItemView(),
       },
     );
   }
