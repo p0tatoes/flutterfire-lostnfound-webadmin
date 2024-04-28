@@ -61,7 +61,6 @@ dependencies:
   # UI packages
   carousel_slider: ^4.2.1
   font_awesome_flutter: ^10.7.0
-  image_picker_web: ^3.1.1
   date_time_picker: ^2.1.0
   image_picker: ^1.0.8
 
