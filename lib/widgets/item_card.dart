@@ -22,7 +22,7 @@ class ItemCard extends StatelessWidget {
           SizedBox(
             width: MediaQuery.sizeOf(context).width,
             height: MediaQuery.sizeOf(context).height * 0.25,
-            child: image == null
+            child: image == null || image!.isEmpty
                 ? const Placeholder(
                     color: Colors.white,
                   )

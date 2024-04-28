@@ -83,10 +83,12 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
                   onTap: () async {},
                 ),
                 ListTile(
-                  title: const Text("Profile",
+                  title: const Text("Add Item",
                       style: TextStyle(color: Colors.white)),
-                  leading: Icon(Icons.person, color: Colors.white),
-                  onTap: () async {},
+                  leading: Icon(Icons.create_rounded, color: Colors.white),
+                  onTap: () {
+                    Navigator.pushNamed(context, "/create");
+                  },
                 ),
                 Container(
                   color: Colors.red,

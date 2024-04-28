@@ -22,7 +22,7 @@ class ItemView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
-                child: itemArgs.image == null
+                child: itemArgs.image == null || itemArgs.image!.isEmpty
                     ? const Placeholder(
                         fallbackHeight: 300.0,
                         color: Colors.red,
