@@ -58,9 +58,11 @@ dependencies:
 
   shared_preferences: ^2.2.3
 
-  # carousel
+  # UI packages
   carousel_slider: ^4.2.1
   font_awesome_flutter: ^10.7.0
+  image_picker_web: ^3.1.1
+  date_time_picker: ^2.1.0
 
 dev_dependencies:
   flutter_test:
