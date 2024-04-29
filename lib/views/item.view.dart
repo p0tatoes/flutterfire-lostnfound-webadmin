@@ -38,7 +38,7 @@ class ItemView extends StatelessWidget {
                         options: CarouselOptions(
                           height: 300.0,
                           autoPlay: false,
-                          enlargeCenterPage: true,
+                          // enlargeCenterPage: true,
                         ),
                       ),
               ),
