@@ -149,6 +149,7 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
                       name: name,
                       category: category,
                       image: image,
+                      claimed: claimed,
                     ),
                   ),
                 );
