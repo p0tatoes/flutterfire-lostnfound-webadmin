@@ -3,12 +3,14 @@ import "package:flutter/material.dart";
 class ItemCard extends StatelessWidget {
   final String name;
   final String category;
+  final bool claimed;
   final List<dynamic>? image;
 
   const ItemCard({
     super.key,
     required this.name,
     required this.category,
+    required this.claimed,
     this.image,
   });
 
@@ -19,12 +21,19 @@ class ItemCard extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: Column(
         children: [
-          SizedBox(
+          Container(
+            color: Colors.white,
             width: MediaQuery.sizeOf(context).width,
-            height: MediaQuery.sizeOf(context).height * 0.25,
-            child: image == null
-                ? const Placeholder(
-                    color: Colors.white,
+            height: 170.0,
+            child: image == null || image!.isEmpty
+                ? Center(
+                    child: Text(
+                      "?",
+                      style: TextStyle(
+                          fontSize: 50.0,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.blue.shade900),
+                    ),
                   )
                 : Image.network(
                     image?[0],
@@ -35,13 +44,58 @@ class ItemCard extends StatelessWidget {
             padding: const EdgeInsets.all(15),
             child: Column(
               children: [
-                Text(name.toUpperCase(),
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    )),
-                Text("${category[0].toUpperCase()}${category.substring(1)}",
-                    style: TextStyle(color: Colors.white)),
+                Text(
+                  name.toUpperCase(),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(
+                  height: 10.0,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15.0, vertical: 5.0),
+                      decoration: BoxDecoration(
+                        color: Colors.blue.shade600,
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      child: Text(
+                        "${category[0].toUpperCase()}${category.substring(1)}",
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 12.0,
+                            fontStyle: FontStyle.italic),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 3.0,
+                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15.0, vertical: 5.0),
+                      decoration: BoxDecoration(
+                        color: claimed ? Colors.green : Colors.deepPurple,
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      child: Text(
+                        claimed ? "Claimed" : "To be claimed",
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 12.0,
+                            fontStyle: FontStyle.italic),
+                      ),
+                    ),
+                  ],
+                ),
+                // Text(
+                //   "${category[0].toUpperCase()}${category.substring(1)}",
+                //   style: TextStyle(color: Colors.white),
+                // ),
               ],
             ),
           )
