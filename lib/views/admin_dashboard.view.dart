@@ -76,12 +76,12 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
                     ],
                   ),
                 ),
-                ListTile(
-                  title: const Text("Dashboard",
-                      style: TextStyle(color: Colors.white)),
-                  leading: Icon(Icons.home_sharp, color: Colors.white),
-                  onTap: () async {},
-                ),
+                // ListTile(
+                //   title: const Text("Dashboard",
+                //       style: TextStyle(color: Colors.white)),
+                //   leading: Icon(Icons.home_sharp, color: Colors.white),
+                //   onTap: () async {},
+                // ),
                 ListTile(
                   title: const Text("Add Item",
                       style: TextStyle(color: Colors.white)),
