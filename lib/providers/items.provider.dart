@@ -19,8 +19,12 @@ class ItemsProvider extends ChangeNotifier {
     isFetching = true;
     notifyListeners();
 
-    final itemSnapshot =
-        await _db.collection("items").orderBy("time_found").get();
+    //? Old fetching; sorted by time found
+    // final itemSnapshot =
+    //     await _db.collection("items").orderBy("time_found").get();
+
+    // sort by "claimed" status
+    final itemSnapshot = await _db.collection("items").orderBy("claimed").get();
 
     for (var item in itemSnapshot.docs) {
       final data = item.data();
