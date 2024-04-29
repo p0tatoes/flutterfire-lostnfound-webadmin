@@ -19,12 +19,19 @@ class ItemCard extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: Column(
         children: [
-          SizedBox(
+          Container(
+            color: Colors.white,
             width: MediaQuery.sizeOf(context).width,
             height: MediaQuery.sizeOf(context).height * 0.25,
             child: image == null || image!.isEmpty
-                ? const Placeholder(
-                    color: Colors.white,
+                ? Center(
+                    child: Text(
+                      "?",
+                      style: TextStyle(
+                          fontSize: 50.0,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.blue.shade900),
+                    ),
                   )
                 : Image.network(
                     image?[0],
