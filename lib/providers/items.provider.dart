@@ -158,4 +158,25 @@ class ItemsProvider extends ChangeNotifier {
       return false;
     }
   }
+
+  Future<bool> updateStatus({required String id}) async {
+    try {
+      final itemRef = _db.collection("items").doc(id);
+      final itemSnapshot = await itemRef.get();
+      final bool isClaimed = itemSnapshot.get("claimed");
+
+      await itemRef.update({"claimed": !isClaimed});
+
+      // refresh items list after adding new item
+      clearItems();
+      getAllItems();
+
+      notifyListeners();
+
+      return true;
+    } catch (e) {
+      print("Failed to upload\n\n$e");
+      return false;
+    }
+  }
 }

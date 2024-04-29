@@ -2,9 +2,19 @@ import "package:carousel_slider/carousel_slider.dart";
 import "package:flutter/material.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import "package:lostnfound_webadmin/models/items.model.dart";
+import "package:lostnfound_webadmin/providers/items.provider.dart";
+import "package:lostnfound_webadmin/widgets/labelled_icon.dart";
+import "package:provider/provider.dart";
 
-class ItemView extends StatelessWidget {
+class ItemView extends StatefulWidget {
   const ItemView({super.key});
+
+  @override
+  State<ItemView> createState() => _ItemViewState();
+}
+
+class _ItemViewState extends State<ItemView> {
+  bool? isClaimed;
 
   @override
   Widget build(BuildContext context) {
@@ -111,6 +121,71 @@ class ItemView extends StatelessWidget {
                             ),
                           ],
                         ),
+                        SizedBox(
+                          height: 15.0,
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              "Update status:",
+                              style: TextStyle(
+                                color: Colors.grey.shade600,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 7.0,
+                            ),
+                            Switch(
+                              value: isClaimed ?? itemArgs.claimed,
+                              activeColor: Colors.green,
+                              inactiveThumbColor: Colors.deepPurple,
+                              // inactiveTrackColor: Colors.deepPurple.shade100,
+                              onChanged: (bool value) async {
+                                try {
+                                  final isUpdated =
+                                      await Provider.of<ItemsProvider>(context,
+                                              listen: false)
+                                          .updateStatus(id: itemArgs.id);
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text("Updating listing status"),
+                                      behavior: SnackBarBehavior.floating,
+                                    ),
+                                  );
+
+                                  if (isUpdated) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                            "Successfully updated listing status"),
+                                        behavior: SnackBarBehavior.floating,
+                                        backgroundColor: Colors.green,
+                                      ),
+                                    );
+                                    setState(() {
+                                      isClaimed = value;
+                                    });
+                                  }
+                                } catch (e) {
+                                  print(e);
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                          "Failed to updated listing status"),
+                                      behavior: SnackBarBehavior.floating,
+                                      backgroundColor: Colors.green,
+                                    ),
+                                  );
+
+                                  Navigator.pop(context);
+                                }
+                              },
+                            ),
+                          ],
+                        )
                       ],
                     ),
                   ],
@@ -161,41 +236,6 @@ class ItemView extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class LabelledIcon extends StatelessWidget {
-  const LabelledIcon({
-    super.key,
-    required this.label,
-    required this.icon,
-  });
-
-  final String label;
-  final IconData icon;
-
-  @override
-  Widget build(BuildContext context) {
-    return Wrap(
-      spacing: 7.0,
-      runSpacing: 7.0,
-      alignment: WrapAlignment.center,
-      runAlignment: WrapAlignment.center,
-      crossAxisAlignment: WrapCrossAlignment.center,
-      children: [
-        FaIcon(
-          icon,
-          color: Colors.blue.shade900,
-        ),
-        Text(
-          label,
-          style: TextStyle(
-            color: Colors.grey.shade600,
-            fontStyle: FontStyle.italic,
-          ),
-        )
-      ],
     );
   }
 }
