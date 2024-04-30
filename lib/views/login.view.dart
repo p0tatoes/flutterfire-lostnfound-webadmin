@@ -33,12 +33,12 @@ class _LoginViewState extends State<LoginView> {
           ),
           SizedBox(
             width: 500.0,
-            height: 350,
+            height: 500,
             child: Card(
               // color: Colors.white,
               surfaceTintColor: Colors.white,
-              shape:
-                  const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20)),
               child: Padding(
                 padding: const EdgeInsets.symmetric(
                     horizontal: 30.0, vertical: 50.0),
@@ -47,46 +47,48 @@ class _LoginViewState extends State<LoginView> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Image.asset("assets/logo-addu-text.jpg"),
-                    const Text(
-                      "ADMIN",
-                      style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight
-                              .w900), // TODO: change font style to Trajan
-                    ),
-                    const Text(
-                      "Campus Lost-and-Found",
-                      style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight
-                              .w900), // TODO: change font style to Trajan
-                    ),
+                    Image.asset('assets/campusfind-blue-logo.png',
+                        width: 256, height: 256),
                     ElevatedButton(
-                      onPressed: () async {
-                        try {
-                          await auth.googleSignIn();
+                        onPressed: () async {
+                          try {
+                            await auth.googleSignIn();
 
-                          if (AuthProvider.user != null) {
-                            //? Debugging
-                            // print("is logged in? ${AuthService.user != null}");
-                            // print("user: ${AuthService.user?.displayName}");
+                            if (AuthProvider.user != null) {
+                              //? Debugging
+                              // print("is logged in? ${AuthService.user != null}");
+                              // print("user: ${AuthService.user?.displayName}");
 
-                            Navigator.pushNamed(context, "/dashboard");
+                              Navigator.pushNamed(context, "/dashboard");
+                            }
+                          } catch (e) {
+                            // uhhhh
                           }
-                        } catch (e) {
-                          // uhhhh
-                        }
-                      },
-                      style: ElevatedButton.styleFrom(
-                          shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.zero),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 30.0, vertical: 20.0),
-                          backgroundColor: Colors.blue
-                              .shade900, // This is the background color of the button
-                          foregroundColor: Colors.blue.shade100),
-                      child: const Text("Sign in with AdDU Google"),
-                    ),
+                        },
+                        style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20.0, vertical: 20.0),
+                            backgroundColor: Colors.blue
+                                .shade900, // This is the background color of the button
+                            foregroundColor: Colors.blue.shade100),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 10, right: 10),
+                                child: Image.asset('assets/google_icon.png',
+                                    width: 28, height: 28),
+                              ),
+                              Text(
+                                "Sign in with AdDU Google",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ])),
                   ],
                 ),
               ),
