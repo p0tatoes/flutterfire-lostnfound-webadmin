@@ -45,7 +45,7 @@ class _AboutViewState extends State<AboutView> {
                       const Text("Home", style: TextStyle(color: Colors.white)),
                   leading: Icon(Icons.home, color: Colors.white),
                   onTap: () {
-                    Navigator.pushNamed(context, "/dashboard");
+                    Navigator.popAndPushNamed(context, "/dashboard");
                   },
                 ),
                 ListTile(
@@ -57,14 +57,15 @@ class _AboutViewState extends State<AboutView> {
                     Navigator.pushNamed(context, "/create");
                   },
                 ),
-                ListTile(
-                  title: const Text("About App",
-                      style: TextStyle(color: Colors.white)),
-                  leading: const Icon(Icons.info_outline_rounded,
-                      color: Colors.white),
-                  onTap: () {
-                    Navigator.pushNamed(context, "/about");
-                  },
+                Container(
+                  color: Colors.blue.shade700,
+                  child: ListTile(
+                    title: const Text("About App",
+                        style: TextStyle(color: Colors.white)),
+                    leading: const Icon(Icons.info_outline_rounded,
+                        color: Colors.white),
+                    onTap: null,
+                  ),
                 ),
                 Container(
                   color: Colors.red,

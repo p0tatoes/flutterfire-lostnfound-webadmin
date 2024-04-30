@@ -87,13 +87,14 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
                 //   leading: Icon(Icons.home_sharp, color: Colors.white),
                 //   onTap: () async {},
                 // ),
-                ListTile(
-                  title:
-                      const Text("Home", style: TextStyle(color: Colors.white)),
-                  leading: Icon(Icons.home, color: Colors.white),
-                  onTap: () {
-                    Navigator.pushNamed(context, "/dashboard");
-                  },
+                Container(
+                  color: Colors.blue.shade700,
+                  child: ListTile(
+                    title: const Text("Home",
+                        style: TextStyle(color: Colors.white)),
+                    leading: Icon(Icons.home, color: Colors.white),
+                    onTap: null,
+                  ),
                 ),
                 ListTile(
                   title: const Text("Add Item",
@@ -108,7 +109,7 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
                       style: TextStyle(color: Colors.white)),
                   leading: Icon(Icons.info_outline, color: Colors.white),
                   onTap: () {
-                    Navigator.pushNamed(context, "/about");
+                    Navigator.popAndPushNamed(context, "/about");
                   },
                 ),
                 Container(
