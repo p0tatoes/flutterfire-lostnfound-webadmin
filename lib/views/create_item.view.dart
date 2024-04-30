@@ -50,11 +50,16 @@ class _CreateItemViewState extends State<CreateItemView> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue.shade900,
-        title: const Text("Add Lost-n-Found Item Listing"),
+        title: const Text(
+          "Add Item Listing",
+          style: TextStyle(
+            fontSize: 18,
+          ),
+        ),
         foregroundColor: Colors.white,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 100.0, vertical: 50.0),
+        padding: const EdgeInsets.symmetric(horizontal: 500, vertical: 25.0),
         child: SingleChildScrollView(
           child: Form(
             key: _formKey,
@@ -78,25 +83,26 @@ class _CreateItemViewState extends State<CreateItemView> {
                     color: Colors.blue.shade900,
                     borderRadius: BorderRadius.circular(10.0),
                   ),
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
-                  margin: EdgeInsets.only(bottom: 15.0),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 30.0, vertical: 10.0),
+                  margin: const EdgeInsets.only(bottom: 15.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         "Category",
                         style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontStyle: FontStyle.italic,
-                        ),
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontStyle: FontStyle.italic,
+                            fontSize: 14),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10.0,
                       ),
                       DropdownButtonFormField(
-                        decoration: InputDecoration(
+                        dropdownColor: Colors.blue.shade900,
+                        decoration: const InputDecoration(
                           enabledBorder: OutlineInputBorder(
                             borderSide:
                                 BorderSide(color: Colors.white, width: 1.0),
@@ -125,9 +131,8 @@ class _CreateItemViewState extends State<CreateItemView> {
                             .map<DropdownMenuItem<String>>(
                               (category) => DropdownMenuItem(
                                 value: category,
-                                child: Text(
-                                  category,
-                                ),
+                                child: Text(category,
+                                    style: TextStyle(color: Colors.white)),
                               ),
                             )
                             .toList(),
@@ -136,20 +141,6 @@ class _CreateItemViewState extends State<CreateItemView> {
                   ),
                 ),
 
-                // DropdownMenu(
-                //   label: const Text("Categories"),
-                //   controller: inCategory,
-                //   dropdownMenuEntries: categories
-                //       .map<DropdownMenuEntry<String>>(
-                //         (category) => DropdownMenuEntry(
-                //           value: category,
-                //           label: category.toUpperCase(),
-                //         ),
-                //       )
-                //       .toList(),
-                // ),
-
-                // location_found
                 FormInputField(controller: inLocation, label: "Found at"),
 
                 // time_found
@@ -158,13 +149,13 @@ class _CreateItemViewState extends State<CreateItemView> {
                     color: Colors.blue.shade900,
                     borderRadius: BorderRadius.circular(10.0),
                   ),
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
-                  margin: EdgeInsets.only(bottom: 15.0),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 30.0, vertical: 10.0),
+                  margin: const EdgeInsets.only(bottom: 15.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         "Time found",
                         style: TextStyle(
                           color: Colors.white,
@@ -172,12 +163,12 @@ class _CreateItemViewState extends State<CreateItemView> {
                           fontStyle: FontStyle.italic,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10.0,
                       ),
                       DateTimePicker(
-                        style: TextStyle(color: Colors.white),
-                        decoration: InputDecoration(
+                        style: const TextStyle(color: Colors.white),
+                        decoration: const InputDecoration(
                           enabledBorder: UnderlineInputBorder(
                             borderSide:
                                 BorderSide(color: Colors.white, width: 1.0),
@@ -186,7 +177,7 @@ class _CreateItemViewState extends State<CreateItemView> {
                             borderSide:
                                 BorderSide(color: Colors.white, width: 1.0),
                           ),
-                          icon: const Icon(Icons.event),
+                          icon: Icon(Icons.event),
                           iconColor: Colors.white,
                         ),
                         type: DateTimePickerType.dateTime,
@@ -215,7 +206,7 @@ class _CreateItemViewState extends State<CreateItemView> {
                  * only shows if category is not "valuables"
                  */
                 if (inCategory == "Valuables")
-                  SizedBox()
+                  const SizedBox()
                 else
                   ElevatedButton(
                     style: ButtonStyle(
@@ -227,15 +218,17 @@ class _CreateItemViewState extends State<CreateItemView> {
                       backgroundColor: MaterialStatePropertyAll(
                         _imageFiles.isEmpty ? Colors.grey : Colors.green,
                       ),
-                      foregroundColor: MaterialStatePropertyAll(Colors.white),
+                      foregroundColor:
+                          const MaterialStatePropertyAll(Colors.white),
                     ),
                     onPressed: () {
                       _pickImage();
                     },
-                    child: const Text("Select Image"),
+                    child: const Text("Select Image",
+                        style: TextStyle(color: Colors.white)),
                   ),
 
-                SizedBox(
+                const SizedBox(
                   height: 15.0,
                 ),
 
@@ -247,7 +240,8 @@ class _CreateItemViewState extends State<CreateItemView> {
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                     ),
-                    foregroundColor: MaterialStatePropertyAll(Colors.white),
+                    foregroundColor:
+                        const MaterialStatePropertyAll(Colors.white),
                     backgroundColor:
                         MaterialStatePropertyAll(Colors.blue.shade900),
                   ),
@@ -331,7 +325,10 @@ class _CreateItemViewState extends State<CreateItemView> {
                       });
                     }
                   },
-                  child: const Text("Submit"),
+                  child: const Text(
+                    "Submit",
+                    style: TextStyle(color: Colors.white, fontSize: 14),
+                  ),
                 )
               ],
             ),

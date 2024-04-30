@@ -22,12 +22,12 @@ class LabelledIcon extends StatelessWidget {
       children: [
         FaIcon(
           icon,
-          color: Colors.blue.shade900,
+          color: Colors.white,
         ),
         Text(
           label,
           style: TextStyle(
-            color: Colors.grey.shade600,
+            color: Colors.white,
             fontStyle: FontStyle.italic,
           ),
         )

@@ -70,9 +70,14 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
                 DrawerHeader(
                   child: Column(
                     children: [
-                      Image.asset("assets/logo-addu-text.jpg"),
-                      Text("Welcome, ${AuthProvider.user?.displayName}",
-                          style: TextStyle(color: Colors.white)),
+                      Image.asset("assets/University-Seal.png",
+                          height: 86, width: 86),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                            "Welcome, ${AuthProvider.user?.displayName}",
+                            style: TextStyle(color: Colors.white)),
+                      ),
                     ],
                   ),
                 ),
@@ -83,11 +88,27 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
                 //   onTap: () async {},
                 // ),
                 ListTile(
+                  title:
+                      const Text("Home", style: TextStyle(color: Colors.white)),
+                  leading: Icon(Icons.home, color: Colors.white),
+                  onTap: () {
+                    Navigator.pushNamed(context, "/dashboard");
+                  },
+                ),
+                ListTile(
                   title: const Text("Add Item",
                       style: TextStyle(color: Colors.white)),
                   leading: Icon(Icons.create_rounded, color: Colors.white),
                   onTap: () {
                     Navigator.pushNamed(context, "/create");
+                  },
+                ),
+                ListTile(
+                  title: const Text("About App",
+                      style: TextStyle(color: Colors.white)),
+                  leading: Icon(Icons.info_outline, color: Colors.white),
+                  onTap: () {
+                    Navigator.pushNamed(context, "/about");
                   },
                 ),
                 Container(

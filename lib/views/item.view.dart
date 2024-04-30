@@ -23,6 +23,10 @@ class _ItemViewState extends State<ItemView> {
 
     return Scaffold(
       appBar: AppBar(
+        title: Text(
+          'Campus Find',
+          style: TextStyle(color: Colors.white, fontSize: 18),
+        ),
         backgroundColor: Colors.blue.shade900,
         foregroundColor: Colors.white,
       ),
@@ -31,7 +35,7 @@ class _ItemViewState extends State<ItemView> {
           child: Container(
             // alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: Colors.grey.shade200,
+              color: Colors.blue.shade900,
               borderRadius: BorderRadius.circular(10.0),
             ),
             margin:
@@ -77,7 +81,9 @@ class _ItemViewState extends State<ItemView> {
                         Text(
                           itemArgs.name.toUpperCase(),
                           style: const TextStyle(
-                              fontSize: 30.0, fontWeight: FontWeight.w800),
+                              fontSize: 30.0,
+                              fontWeight: FontWeight.w800,
+                              color: Colors.white),
                         ),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -132,7 +138,7 @@ class _ItemViewState extends State<ItemView> {
                             Text(
                               "Update status:",
                               style: TextStyle(
-                                color: Colors.grey.shade600,
+                                color: Colors.white,
                               ),
                             ),
                             SizedBox(
@@ -176,7 +182,7 @@ class _ItemViewState extends State<ItemView> {
                                       content: Text(
                                           "Failed to updated listing status"),
                                       behavior: SnackBarBehavior.floating,
-                                      backgroundColor: Colors.green,
+                                      backgroundColor: Colors.red,
                                     ),
                                   );
 
@@ -199,7 +205,9 @@ class _ItemViewState extends State<ItemView> {
                     const Text(
                       "Found at",
                       style: TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.w900),
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.white),
                     ),
                     Wrap(
                       spacing: 10.0,
@@ -221,13 +229,14 @@ class _ItemViewState extends State<ItemView> {
                     const Text(
                       "Description",
                       style: TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.w900),
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.white),
                     ),
                     Text(
                       itemArgs.description,
                       style: TextStyle(
-                          fontStyle: FontStyle.italic,
-                          color: Colors.grey.shade600),
+                          fontStyle: FontStyle.italic, color: Colors.white),
                     )
                   ],
                 ),
