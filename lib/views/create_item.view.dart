@@ -132,7 +132,7 @@ class _CreateItemViewState extends State<CreateItemView> {
                               (category) => DropdownMenuItem(
                                 value: category,
                                 child: Text(category,
-                                    style: TextStyle(color: Colors.white)),
+                                    style: const TextStyle(color: Colors.white)),
                               ),
                             )
                             .toList(),

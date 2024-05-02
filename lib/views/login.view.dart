@@ -82,7 +82,7 @@ class _LoginViewState extends State<LoginView> {
                                 child: Image.asset('assets/google_icon.png',
                                     width: 28, height: 28),
                               ),
-                              Text(
+                              const Text(
                                 "Sign in with AdDU Google",
                                 style: TextStyle(
                                   color: Colors.white,

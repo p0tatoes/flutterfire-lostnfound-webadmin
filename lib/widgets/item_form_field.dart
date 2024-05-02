@@ -17,25 +17,25 @@ class FormInputField extends StatelessWidget {
         color: Colors.blue.shade900,
         borderRadius: BorderRadius.circular(10.0),
       ),
-      padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
-      margin: EdgeInsets.only(bottom: 15.0),
+      padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+      margin: const EdgeInsets.only(bottom: 15.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             label,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
               fontStyle: FontStyle.italic,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10.0,
           ),
           TextFormField(
-            style: TextStyle(color: Colors.white),
-            decoration: InputDecoration(
+            style: const TextStyle(color: Colors.white),
+            decoration: const InputDecoration(
               border: OutlineInputBorder(
                 borderSide: BorderSide(width: 1.0),
               ),

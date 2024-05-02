@@ -76,7 +76,7 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
                             "Welcome, ${AuthProvider.user?.displayName}",
-                            style: TextStyle(color: Colors.white)),
+                            style: const TextStyle(color: Colors.white)),
                       ),
                     ],
                   ),
@@ -89,8 +89,8 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
                 // ),
                 Container(
                   color: Colors.blue.shade700,
-                  child: ListTile(
-                    title: const Text("Home",
+                  child: const ListTile(
+                    title: Text("Home",
                         style: TextStyle(color: Colors.white)),
                     leading: Icon(Icons.home, color: Colors.white),
                     onTap: null,
@@ -99,7 +99,7 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
                 ListTile(
                   title: const Text("Add Item",
                       style: TextStyle(color: Colors.white)),
-                  leading: Icon(Icons.create_rounded, color: Colors.white),
+                  leading: const Icon(Icons.create_rounded, color: Colors.white),
                   onTap: () {
                     Navigator.pushNamed(context, "/create");
                   },
@@ -107,7 +107,7 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
                 ListTile(
                   title: const Text("About App",
                       style: TextStyle(color: Colors.white)),
-                  leading: Icon(Icons.info_outline, color: Colors.white),
+                  leading: const Icon(Icons.info_outline, color: Colors.white),
                   onTap: () {
                     Navigator.popAndPushNamed(context, "/about");
                   },
@@ -117,7 +117,7 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
                   child: ListTile(
                     title: const Text("Sign Out",
                         style: TextStyle(color: Colors.white)),
-                    leading: Icon(Icons.logout, color: Colors.white),
+                    leading: const Icon(Icons.logout, color: Colors.white),
                     onTap: () async {
                       await auth.googleSignOut();
 

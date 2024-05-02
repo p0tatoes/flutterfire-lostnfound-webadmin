@@ -26,7 +26,7 @@ class LabelledIcon extends StatelessWidget {
         ),
         Text(
           label,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
             fontStyle: FontStyle.italic,
           ),

@@ -1,10 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:lostnfound_webadmin/models/items.model.dart';
 import 'package:lostnfound_webadmin/providers/auth.provider.dart';
-import 'package:lostnfound_webadmin/providers/items.provider.dart';
-import 'package:lostnfound_webadmin/widgets/item_card.dart';
-import 'package:provider/provider.dart';
 
 AuthProvider auth = AuthProvider();
 
@@ -43,7 +38,7 @@ class _AboutViewState extends State<AboutView> {
                 ListTile(
                   title:
                       const Text("Home", style: TextStyle(color: Colors.white)),
-                  leading: Icon(Icons.home, color: Colors.white),
+                  leading: const Icon(Icons.home, color: Colors.white),
                   onTap: () {
                     Navigator.popAndPushNamed(context, "/dashboard");
                   },
@@ -59,10 +54,10 @@ class _AboutViewState extends State<AboutView> {
                 ),
                 Container(
                   color: Colors.blue.shade700,
-                  child: ListTile(
-                    title: const Text("About App",
+                  child: const ListTile(
+                    title: Text("About App",
                         style: TextStyle(color: Colors.white)),
-                    leading: const Icon(Icons.info_outline_rounded,
+                    leading: Icon(Icons.info_outline_rounded,
                         color: Colors.white),
                     onTap: null,
                   ),
@@ -95,10 +90,10 @@ class _AboutViewState extends State<AboutView> {
                             fontSize: 48, fontWeight: FontWeight.bold)),
                     Image.asset('assets/campusfind-blue-logo.png',
                         width: 512, height: 512),
-                    Padding(
+                    const Padding(
                       padding:
-                          const EdgeInsets.only(left: 32.0, right: 32, top: 10),
-                      child: const Text(
+                          EdgeInsets.only(left: 32.0, right: 32, top: 10),
+                      child: Text(
                           'CampusFind is an application that allows AdDU Students to locate and find any items they may have lost inside the campus. OSA Admins may list down any valuables that are reported to their office as lost and found, while users may claim their lost items in the office,',
                           style: TextStyle(color: Colors.black, fontSize: 24)),
                     ),

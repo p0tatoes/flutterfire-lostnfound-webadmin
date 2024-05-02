@@ -23,7 +23,7 @@ class _ItemViewState extends State<ItemView> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Campus Find',
           style: TextStyle(color: Colors.white, fontSize: 18),
         ),
@@ -127,7 +127,7 @@ class _ItemViewState extends State<ItemView> {
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 15.0,
                         ),
                         Row(
@@ -135,13 +135,13 @@ class _ItemViewState extends State<ItemView> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Text(
+                            const Text(
                               "Update status:",
                               style: TextStyle(
                                 color: Colors.white,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 7.0,
                             ),
                             Switch(
@@ -156,7 +156,7 @@ class _ItemViewState extends State<ItemView> {
                                               listen: false)
                                           .updateStatus(id: itemArgs.id);
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
+                                    const SnackBar(
                                       content: Text("Updating listing status"),
                                       behavior: SnackBarBehavior.floating,
                                     ),
@@ -164,7 +164,7 @@ class _ItemViewState extends State<ItemView> {
 
                                   if (isUpdated) {
                                     ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
+                                      const SnackBar(
                                         content: Text(
                                             "Successfully updated listing status"),
                                         behavior: SnackBarBehavior.floating,
@@ -178,7 +178,7 @@ class _ItemViewState extends State<ItemView> {
                                 } catch (e) {
                                   print(e);
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
+                                    const SnackBar(
                                       content: Text(
                                           "Failed to updated listing status"),
                                       behavior: SnackBarBehavior.floating,
@@ -196,7 +196,7 @@ class _ItemViewState extends State<ItemView> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15.0,
                 ),
                 Column(
@@ -235,7 +235,7 @@ class _ItemViewState extends State<ItemView> {
                     ),
                     Text(
                       itemArgs.description,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontStyle: FontStyle.italic, color: Colors.white),
                     )
                   ],
